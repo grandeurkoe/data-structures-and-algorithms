@@ -15,4 +15,9 @@ Algorithms covered -
 3. Search and Traversal.
 4. Dynamic Programming.
 
+### Tools used
+![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=Python)
+![Replit](https://img.shields.io/badge/-Replit-black?style=flat-square&logo=Replit)
+![Pycharm](https://img.shields.io/badge/-Pycharm-black?style=flat-square&logo=Pycharm)
+
 **Notes: https://1drv.ms/o/s!AlGcxe3daHqGgSZFDJpTF_jIoWT2?e=T6KRro**
