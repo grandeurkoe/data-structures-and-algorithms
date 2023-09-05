@@ -2,12 +2,12 @@
 Learn about concepts like data structures and algorithms.
 
 Data structures covered - 
-1. [Arrays or Lists.](data-structures/arrays-or-lists)
-2. [Hash tables or Dictionaries.](data-structures/hash-tables-or-dictionaries)
-3. [Linked Lists.](data-structures/linked-list)
-4. [Stacks and Queues.](data-structures/stacks-and-queues)
-5. [Trees.](data-structures/trees)
-6. [Graphs.](data-structures/graphs)
+1. Arrays or Lists. 
+2. Hash tables or Dictionaries. 
+3. Linked Lists.
+4. Stacks and Queues. 
+5. Trees. 
+6. Graphs. 
 
 Algorithms covered - 
 1. Recursion.
