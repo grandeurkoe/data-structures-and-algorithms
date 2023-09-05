@@ -15,9 +15,21 @@ Algorithms covered -
 3. Search and Traversal.
 4. Dynamic Programming.
 
-### Tools used
+**Notes: https://1drv.ms/o/s!AlGcxe3daHqGgSZFDJpTF_jIoWT2?e=T6KRro**
+
+## Getting Started
+
+### Prerequisites
+
+Download and Install the latest version of [Python](https://www.python.org/downloads/) if your operating system of choice is <b>Windows</b>.
+
+<b>Linux</b> comes preinstalled with Python.
+
+## Built With
 ![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=Python)
 ![Replit](https://img.shields.io/badge/-Replit-black?style=flat-square&logo=Replit)
 ![Pycharm](https://img.shields.io/badge/-Pycharm-black?style=flat-square&logo=Pycharm)
 
-**Notes: https://1drv.ms/o/s!AlGcxe3daHqGgSZFDJpTF_jIoWT2?e=T6KRro**
+## Authors
+
+*Initial work* - [grandeurkoe](https://github.com/grandeurkoe)
