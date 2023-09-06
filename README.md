@@ -21,9 +21,22 @@ Algorithms covered -
 
 ### Prerequisites
 
-Download and Install the latest version of [Python](https://www.python.org/downloads/) if your operating system of choice is <b>Windows</b>.
+<b>For Windows:</b>
+<br/> 
 
-<b>Linux</b> comes preinstalled with Python.
+Download and Install the latest version of [Python](https://www.python.org/downloads/).<br/><br/>
+Download and Install the latest version of [PyCharm Community Edition](https://www.jetbrains.com/pycharm/download/?section=windows).<br/>
+
+
+<b>For Linux:</b>
+<br/> 
+
+<b>Linux</b> comes preinstalled with Python.<br/><br/>
+To install the latest version of PyCharm Community Edition, run the following command:
+```
+sudo snap install pycharm-community --classic
+```
+
 
 ## Built With
 ![Python](https://img.shields.io/badge/-Python-black?style=flat-square&logo=Python)
