@@ -10,8 +10,7 @@ class Array:
         else:
             return False
 
-            # DISPLAY OPERATION
-
+    # DISPLAY OPERATION
     # Displays the array as a string.
     # Time complexity - O(n)
     def display(self):
