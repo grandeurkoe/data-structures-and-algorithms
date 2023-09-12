@@ -56,6 +56,8 @@ class Array:
         print(f'Pushed {element}.')
 
     # DELETION OPERATION
+    # Assuming that there is no collision introduced by the hash function.
+    # However, if there is collision than the time complexity can go upto O(n).
     # To delete data element from the end of the list.
     # Time complexity - O(1)
     def pop(self):
@@ -67,7 +69,7 @@ class Array:
             return "No data elements in SAMPLE."
 
     # To delete data element at a given index.
-    # Time complexity - O(N)
+    # Time complexity - O(1)
     def remove(self, index):
         """Deletes data element at a given index."""
         if not self.is_empty():
