@@ -1,17 +1,40 @@
-def reverse_string(string):
-    """Reverses the passed string."""
-    if not string or type(string) is not str:
-        return "Invalid Input!!!"
+def is_valid_input(string):
+    """Check if the given string is valid input."""
+    if type(string) == str:
+        return type(string) == str
     else:
-        # The easiest method to reverse a string is to use slice. Here, start = last character | end = first
-        # character | increment = -1 return string[::-1]
-
-        # OR
-
-        # Using List comprehension reverse the string and store it as a List. Then append the elements of the list
-        # together as a string.
-        string_list = [string[char_index] for char_index in range(len(string) - 1, -1, -1)]
-        return "".join(string_list)
+        return False
 
 
-print(reverse_string("My name is Meowya."))
+# Time complexity - O(length of string)
+def reverse_string_using_slice(string):
+    """Reverses a given string using list slicing."""
+    if is_valid_input(string):
+        if len(string) <= 1:
+            print(string)
+        else:
+            reverse_string = string[::-1]
+            print(reverse_string)
+    else:
+        print("Invalid input.")
+
+
+# Time complexity - O(length of string)
+def reverse_string_using_comprehension(string):
+    """Reverses a given string using list comprehension."""
+    if is_valid_input(string):
+        if len(string) <= 1:
+            print(string)
+        else:
+            string = list(string)
+            reverse_string = [string[index] for index in range(len(string) - 1, -1, -1)]
+            reverse_string = ''.join(reverse_string)
+            print(reverse_string)
+    else:
+        print("Invalid input.")
+
+
+original_string = "My name is Meowya."
+reverse_string_using_slice(original_string)
+reverse_string_using_comprehension(original_string)
+
