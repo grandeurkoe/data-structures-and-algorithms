@@ -77,11 +77,11 @@ class Array:
             return "No data elements in SAMPLE."
 
 
-SAMPLE = Array()
-SAMPLE.push('a')
-SAMPLE.push('b')
-SAMPLE.push('c')
-SAMPLE.push('d')
-SAMPLE.pop()
-SAMPLE.remove(1)
-SAMPLE.display()
+sample = Array()
+sample.push('a')
+sample.push('b')
+sample.push('c')
+sample.push('d')
+sample.pop()
+sample.remove(1)
+sample.display()
