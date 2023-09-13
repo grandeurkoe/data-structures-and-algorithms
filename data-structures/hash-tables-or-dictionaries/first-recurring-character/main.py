@@ -1,27 +1,34 @@
-def first_recurring_character_nested(query_array):
-    """Returns the first recurring character based on the query array provided."""
-    short_index = 20000
-    for check_index in range(len(query_array)):
-        temp = query_array[check_index]
-
-        for loop_index in range(check_index + 1, len(query_array)):
-            if temp == query_array[loop_index]:
-                if loop_index < short_index:
-                    short_index = loop_index
-                    first_recurring = query_array[loop_index]
-
-    return first_recurring
-
-
-def first_recurring_character_hash(query_array):
-    """Returns the first recurring character based on the query array provided."""
-    query_map = {}
-    for index in range(len(query_array)):
-        if query_array[index] in query_map:
-            return query_array[index]
+def first_recurring_character_nested(sample_array):
+    """Finds the first recurring character based on the sample provided using nested loops."""
+    does_exist = False
+    first_recurring = sample[0]
+    recurring_distance = len(sample) - 1
+    for sample_index in range(len(sample)):
+        for check_index in range(sample_index + 1, len(sample)):
+            if sample[sample_index] == sample[check_index] and recurring_distance > check_index - sample_index:
+                recurring_distance = check_index - sample_index
+                first_recurring = sample[sample_index]
+                does_exist = True
+    if recurring_distance == len(sample) - 1:
+        if does_exist:
+            print(f"First recurring character (nested): {first_recurring}")
         else:
-            query_map[query_array[index]] = index
+            print("No recurring characters.")
+    else:
+        print(f"First recurring character (nested): {first_recurring}")
 
 
-print(first_recurring_character_nested([2, 5, 5, 1, 3, 1, 2, 4]))
-print(first_recurring_character_hash([2, 5, 5, 1, 3, 1, 2, 4]))
+def first_recurring_character_hash(sample_array):
+    """Finds the first recurring character based on the sample provided using hash tables."""
+    sample_hash = {}
+    for character_index in range(len(sample)):
+        if sample[character_index] not in sample_hash.keys():
+            sample_hash[sample[character_index]] = sample[character_index]
+        else:
+            print(f"First recurring character (hash): {sample_hash[sample[character_index]]}")
+            return True
+
+
+sample = [2, 5, 5, 1, 3, 1, 2, 4]
+first_recurring_character_nested(sample)
+first_recurring_character_hash(sample)
