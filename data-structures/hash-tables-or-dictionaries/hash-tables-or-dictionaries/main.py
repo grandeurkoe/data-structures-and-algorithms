@@ -1,11 +1,22 @@
-def scream():
-    """Prints Ahhhhhhhh!!!! on the console."""
-    print("Ahhhhhhhh!!!!")
+dictionary = {
+    'first_name': 'Me',
+}
 
+# LOOKUP OPERATION
+# To get the value of a dictionary entry based on the key provided.
+# The key gets passed to the hash function which then generates a value of fixed length.
+# Assigns memory location to dictionary entry based on this hash value.
+# Time complexity - O(1)
+print(dictionary['first_name'])
 
-user = {"Name": "Meowya", "Age": 54, "Magic": True, "Scream": scream, "Spell": "Avada Kedavra"}
+# INSERTION OPERATION
+# To insert entries into a dictionary.
+# Time complexity - O(1)
+dictionary['last_name'] = 'Meowya'
 
-# Time Complexity - O(1)
-print(user)
-# Time Complexity - O(1)
-user["Scream"]()
+# DELETION OPERATION
+# To delete entries from dictionary.
+# Time complexity - O(1)
+del dictionary['last_name']
+
+print(dictionary)
