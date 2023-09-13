@@ -36,8 +36,7 @@ class Dictionary:
                     return True
             print(f"{key} key doesn't exist.")
 
-            # INSERTION OPERATION
-
+    # INSERTION OPERATION
     # To insert entries into a dictionary.
     def insert(self, key, value):
         """Inserts a (key, value) entry into a hash table."""
