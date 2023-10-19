@@ -15,8 +15,6 @@ Algorithms covered -
 3. Search and Traversal.
 4. Dynamic Programming.
 
-**Notes: https://1drv.ms/o/s!AlGcxe3daHqGgSZFDJpTF_jIoWT2?e=T6KRro**
-
 ## Getting Started
 
 ### Prerequisites
