@@ -50,7 +50,7 @@ class DoublyLinkedList:
             node['next'] = current_node['next']
             node['previous'] = current_node
             current_node['next'] = node
-            current_node['next']['next']['previous'] = node
+            node['next']['previous'] = node
             self.length += 1
 
     def remove(self, index):
@@ -58,7 +58,10 @@ class DoublyLinkedList:
         if index == 0:
             self.head['value'] = self.head['next']['value']
             self.head['next'] = self.head['next']['next']
-            self.head['next']['previous'] = self.head
+            if self.head['next'] is not None:
+                self.head['next']['previous'] = self.head
+            else:
+                self.tail = self.head
             self.length -= 1
         else:
             current_node = self.head
@@ -69,7 +72,7 @@ class DoublyLinkedList:
                 self.tail = current_node
             else:
                 current_node['next'] = current_node['next']['next']
-                current_node['next']['previous'] = current_node['next']['previous']['previous']
+                current_node['next']['previous'] = current_node
             self.length -= 1
 
 
@@ -78,7 +81,7 @@ my_linked_list.append(5)
 my_linked_list.append(16)
 my_linked_list.prepend(1)
 my_linked_list.insert(2, 99)
-my_linked_list.remove(3)
+my_linked_list.remove(2)
 my_linked_list.printlist()
 print(my_linked_list.head)
 print(my_linked_list.tail)
