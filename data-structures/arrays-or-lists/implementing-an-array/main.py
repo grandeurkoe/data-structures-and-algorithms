@@ -3,87 +3,101 @@ class Array:
         self.data = {}
         self.length = 0
 
-    def is_empty(self):
-        """Checks if list is Empty. Returns True if Empty. """
-        if self.length == 0:
-            return self.length == 0
-        else:
-            return False
-
-    # DISPLAY OPERATION
-    # Displays the array as a string.
-    # Time complexity - O(n)
     def display(self):
-        """Displays list as a string."""
-        if not self.is_empty():
-            array = "["
-            for each_key in self.data:
-                array += f"{self.data[each_key]},"
-            array = array[:len(array) - 1]
-            print(f"{array}]")
-        else:
-            print("[]")
+        """Display list."""
+        print(f"\nList: {list(self.data.values())}\n")
 
     # LOOKUP OPERATION
-    # To get the data element at a certain index.
-    # Since python dictionaries use hash tables, lookups are faster.
-    # Time complexity - O(1)
-    def get_data_at_index(self, index):
-        """Gets the data element at a given index. Returns the data element"""
-        if not self.is_empty():
-            return self.data[index]
-        else:
-            return "No data elements in SAMPLE."
-
-    # To get the index of a data element.
-    # Time complexity - O(n)
-    def get_index(self, element):
+    # Time complexity or BIG(O) - O(n)
+    def get_index(self, value):
         """Gets the index of a given data element. Returns the index."""
-        if not self.is_empty():
-            for each_key in self.data:
-                if self.data[each_key] == element:
-                    return each_key
+        if value in self.data.values():
+            for index in range(self.length):
+                if self.data[index] == value:
+                    print(f"Value('{value}') at Index[{index}].")
+                    return index
         else:
-            return "No data elements in SAMPLE."
+            print(f"Value('{value}') doesn't exist.")
 
-    # INSERTION OPERATION
-    # To append data element at the end of the list.
-    # Time complexity - O(1)
-    def push(self, element):
-        """Appends data element at the end of the list."""
-        self.data[f'{self.length}'] = element
+    # Time complexity or BIG(O) - O(1)
+    def get_value_by_index(self, index):
+        """Get the data element at a given index."""
+        if index < self.length:
+            print(f"Value('{self.data[index]}') at Index[{index}].")
+        else:
+            print(f"Index('{index}') doesn't exist.")
+
+    # PUSH OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def push(self, value):
+        """Append data element at the end of the list."""
+        self.data[self.length] = value
         self.length += 1
-        print(f'Pushed {element}.')
+        print(f"Push '{value}'.")
 
-    # DELETION OPERATION
-    # Assuming that there is no collision introduced by the hash function.
-    # However, if there is collision than the time complexity can go upto O(n).
-    # To delete data element from the end of the list.
-    # Time complexity - O(1)
+    # POP OPERATION
+    # Time complexity or BIG(O) - O(1)
     def pop(self):
-        """Pops data element at the end of the list"""
-        if not self.is_empty():
-            del self.data[f'{self.length - 1}']
-            self.length -= 1
+        """Pop data element from the end of the list."""
+        if self.length == 0:
+            print(f"No data elements available in the list.")
         else:
-            return "No data elements in SAMPLE."
-
-    # To delete data element at a given index.
-    # Time complexity - O(1)
-    def remove(self, index):
-        """Deletes data element at a given index."""
-        if not self.is_empty():
-            del self.data[f'{index}']
+            element_to_delete = self.data[self.length - 1]
+            del self.data[self.length - 1]
             self.length -= 1
+            print(f"Pop '{element_to_delete}'.")
+
+    # INSERT OPERATION
+    # Time complexity or BIG(O) - O(n)
+    def insert(self, index, value):
+        """Insert data element at a given index."""
+        if index >= self.length:
+            self.push(value)
         else:
-            return "No data elements in SAMPLE."
+            if index in self.data:
+                for key in range(self.length, index, -1):
+                    self.data[key] = self.data[key - 1]
+                self.data[index] = value
+        self.length += 1
+        print(f"Insert '{value}' at Index[{index}].")
+
+    # DELETE OPERATION
+    # Time complexity or BIG(O) - O(n)
+    def remove_by_index(self, index):
+        """Remove data element at a given index."""
+        if index == self.length - 1:
+            self.pop()
+        elif 0 <= index < self.length - 1:
+            for key in range(index, self.length - 1):
+                self.data[key] = self.data[key + 1]
+            del self.data[self.length - 1]
+            self.length -= 1
+            print(f"Delete element at Index[{index}].")
+        else:
+            print(f"No element at Index[{index}].")
+
+    def remove_by_value(self, value):
+        """Remove data element by value."""
+        if self.length == 0:
+            print(f"No data elements available in the list.")
+        else:
+            if value in self.data.values():
+                element_idx = self.get_index(value)
+                self.remove_by_index(element_idx)
+            else:
+                print(f"Value('{value}') doesn't exist.")
 
 
-sample = Array()
-sample.push('a')
-sample.push('b')
-sample.push('c')
-sample.push('d')
-sample.pop()
-sample.remove(1)
-sample.display()
+arr = Array()
+arr.push('a')
+arr.push('b')
+arr.push('c')
+arr.push('d')
+arr.pop()
+arr.insert(0, 'a')
+arr.remove_by_index(0)
+arr.remove_by_value('a')
+arr.get_index('c')
+arr.get_value_by_index(0)
+arr.display()
+print(arr.data)
