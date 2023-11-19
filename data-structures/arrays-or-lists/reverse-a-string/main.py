@@ -1,40 +1,40 @@
-def is_valid_input(string):
-    """Check if the given string is valid input."""
-    if type(string) == str:
-        return type(string) == str
+STRING = "Can you reverse this string?"
+
+
+# Time complexity or BIG(O) - O(length of string)
+def is_input_valid(string):
+    """Check if input is valid. Return True if valid else return false."""
+    if type(string) is str:
+        return True
     else:
         return False
 
 
-# Time complexity - O(length of string)
-def reverse_string_using_slice(string):
-    """Reverses a given string using list slicing."""
-    if is_valid_input(string):
-        if len(string) <= 1:
-            print(string)
+def reverse_using_slice(original):
+    """Reverse string using list slicing. Return reversed string."""
+    if is_input_valid(original):
+        if len(original) <= 1:
+            return original
         else:
-            reverse_string = string[::-1]
-            print(reverse_string)
+            reverse_string = ''.join(STRING[::-1])
+            return reverse_string
     else:
-        print("Invalid input.")
+        return "Invalid input."
 
 
-# Time complexity - O(length of string)
-def reverse_string_using_comprehension(string):
-    """Reverses a given string using list comprehension."""
-    if is_valid_input(string):
-        if len(string) <= 1:
-            print(string)
+def reverse_using_comprehension(original):
+    """Reverse string using list comprehension. Return reversed string."""
+    if is_input_valid(original):
+        if len(original) <= 1:
+            return original
         else:
-            string = list(string)
-            reverse_string = [string[index] for index in range(len(string) - 1, -1, -1)]
-            reverse_string = ''.join(reverse_string)
-            print(reverse_string)
+            original = [original[index] for index in range(len(original) - 1, -1, -1)]
+            reverse_string = ''.join(original)
+            return reverse_string
     else:
-        print("Invalid input.")
+        return "Invalid input."
 
 
-original_string = "My name is Meowya."
-reverse_string_using_slice(original_string)
-reverse_string_using_comprehension(original_string)
-
+print(f"ORIGINAL STRING: {STRING}")
+print(f"REVERSED STRING USING LIST SLICING: {reverse_using_slice(STRING)}")
+print(f"REVERSED STRING USING LIST COMPREHENSION: {reverse_using_comprehension(STRING)}")
