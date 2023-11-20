@@ -1,87 +1,141 @@
-class DoublyLinkedList:
+class Node:
     def __init__(self, value):
-        """Creates an empty doubly linked list."""
-        self.head = {
-            'value': value,
-            'next': None,
-            'previous': None,
-        }
+        self.value = value
+        self.next = None
+        self.previous = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
         self.tail = self.head
-        self.length = 1
+        self.length = 0
 
-    def append(self, add_value_end):
-        """Adds a node at the end of the doubly linked list."""
-        node = {'value': add_value_end, 'next': None, 'previous': self.tail}
-        self.tail['next'] = node
-        self.tail = node
-        self.length += 1
-
-    def prepend(self, add_value_start):
-        """Adds a node at the beginning of the doubly linked list."""
-        node = {'value': add_value_start, 'next': self.head, 'previous': None}
-        self.head['previous'] = node
-        self.head = node
-        self.length += 1
-
-    def printlist(self):
-        """Prints the doubly linked list as an array."""
-        linked_list_array = []
-        current_node = self.head
-        while current_node is not None:
-            linked_list_array.append(current_node['value'])
-            current_node = current_node['next']
-        print(linked_list_array)
-
-    def insert(self, index, value_insert):
-        """Adds a node at the given index in the doubly linked list."""
-        if index == 0:
-            self.prepend(value_insert)
-        elif index >= self.length:
-            self.append(value_insert)
+    def display(self):
+        """Display linked list."""
+        if self.length == 0:
+            print("\nNo nodes available in Doubly Linked List.")
         else:
-            node = {
-                'value': value_insert,
-                'next': None,
-                'previous': None
-            }
+            disp_list = ""
             current_node = self.head
-            for _ in range(index - 1):
-                current_node = current_node['next']
-            node['next'] = current_node['next']
-            node['previous'] = current_node
-            current_node['next'] = node
-            node['next']['previous'] = node
+            while current_node:
+                disp_list += f"[{current_node.value}]"
+                current_node = current_node.next
+                if current_node is not None:
+                    disp_list += " <--> "
+            print(f"\nDoubly Linked List: {disp_list}")
+
+    # LOOKUP OPERATION
+    # Time complexity or BIG(O) - O(n)
+    def lookup(self, index):
+        """Get node by index."""
+        if self.length == 0:
+            print("No nodes available in Doubly Linked List.")
+        else:
+            if index in range(self.length):
+                current_node = self.head
+                for _ in range(index):
+                    current_node = current_node.next
+                print(f"Node[{current_node.value}] at Index[{index}].")
+            else:
+                print("Index out of range.")
+
+    # APPEND OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def append(self, value):
+        """Add a node with given value at the end of the list."""
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
+        self.length += 1
+        print(f"Append node with Value({value}).")
+
+    # PREPEND OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def prepend(self, value):
+        """Add a node with a given value at the beginning of the list."""
+        new_node = Node(value)
+        if self.head is None:
+            self.append(value)
+        else:
+            new_node.next = self.head
+            self.head.previous = new_node
+            self.head = new_node
             self.length += 1
+            print(f"Prepend node with Value({value}).")
 
-    def remove(self, index):
-        """Removes a node at the given index in the doubly linked list."""
+    # INSERT OPERATION
+    # Time complexity or BIG(O) - O(n)
+    def insert(self, index, value):
+        """Insert node with a given value at a given index."""
+        new_node = Node(value)
         if index == 0:
-            self.head['value'] = self.head['next']['value']
-            self.head['next'] = self.head['next']['next']
-            if self.head['next'] is not None:
-                self.head['next']['previous'] = self.head
-            else:
-                self.tail = self.head
-            self.length -= 1
+            self.prepend(value)
+        elif index == self.length - 1:
+            self.append(value)
         else:
             current_node = self.head
             for _ in range(index - 1):
-                current_node = current_node['next']
-            if index == self.length - 1:
-                current_node['next'] = None
-                self.tail = current_node
+                current_node = current_node.next
+            new_node.next = current_node.next
+            new_node.previous = current_node
+            current_node.next.previous = new_node
+            current_node.next = new_node
+            self.length += 1
+            print(f"Insert node with Value({value}) at Index[{index}].")
+
+    # DELETE OPERATION
+    # Time complexity or BIG(O) - O(n)
+    def delete(self, index):
+        """Remove node at given index."""
+        if index in range(self.length):
+            if self.length == 0:
+                print("No nodes available in Singly Linked List.")
+            elif self.length == 1:
+                self.head = None
+                self.tail = None
+                self.length -= 1
+                print(f"Remove node at Index[0].")
             else:
-                current_node['next'] = current_node['next']['next']
-                current_node['next']['previous'] = current_node
-            self.length -= 1
+                if index == 0:
+                    next_node = self.head.next
+                    self.head.value = next_node.value
+                    self.head.next = next_node.next
+                    next_node.previous = None
+                    self.head = next_node
+                    self.length -= 1
+                    print(f"Remove node at Index[{index}].")
+                elif index == self.length - 1:
+                    current_node = self.head
+                    for _ in range(index - 1):
+                        current_node = current_node.next
+                    current_node.next = None
+                    self.tail = current_node
+                    self.length -= 1
+                    print(f"Remove node at Index[{index}].")
+                elif 0 < index < self.length - 1:
+                    current_node = self.head
+                    for _ in range(index - 1):
+                        current_node = current_node.next
+                    current_node.next = current_node.next.next
+                    current_node.next.previous = current_node
+                    self.length -= 1
+                    print(f"Remove node at Index[{index}].")
+        else:
+            print("Index out of range.")
 
 
-my_linked_list = DoublyLinkedList(10)
-my_linked_list.append(5)
-my_linked_list.append(16)
-my_linked_list.prepend(1)
-my_linked_list.insert(2, 99)
-my_linked_list.remove(2)
-my_linked_list.printlist()
-print(my_linked_list.head)
-print(my_linked_list.tail)
+doubly_linked_list = DoublyLinkedList()
+doubly_linked_list.prepend(10)
+doubly_linked_list.append(5)
+doubly_linked_list.prepend(1)
+doubly_linked_list.insert(1, 16)
+doubly_linked_list.delete(0)
+doubly_linked_list.delete(1)
+doubly_linked_list.lookup(1)
+doubly_linked_list.display()
