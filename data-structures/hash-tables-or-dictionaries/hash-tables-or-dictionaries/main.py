@@ -1,22 +1,41 @@
-dictionary = {
-    'first_name': 'Me',
-}
+SAMPLE_DICT = {'fname': 'Vishal'}
+
+print(f"SAMPLE_DICT: {SAMPLE_DICT}")
 
 # LOOKUP OPERATION
-# To get the value of a dictionary entry based on the key provided.
-# The key gets passed to the hash function which then generates a value of fixed length.
-# Assigns memory location to dictionary entry based on this hash value.
-# Time complexity - O(1)
-print(dictionary['first_name'])
+print("\nLOOKUP OPERATION")
 
-# INSERTION OPERATION
-# To insert entries into a dictionary.
-# Time complexity - O(1)
-dictionary['last_name'] = 'Meowya'
+# Get the value of a dictionary entry based on key provided.
+# Time complexity or BIG(O) - O(1)
+print(f"Entry with key('fname'): {SAMPLE_DICT['fname']}")
 
-# DELETION OPERATION
-# To delete entries from dictionary.
-# Time complexity - O(1)
-del dictionary['last_name']
+# Get all keys in dictionary.
+# Time complexity or BIG(O) - O(1)
+# list() function changes the time complexity from O(1) to O(n).
+print(f"SAMPLE_DICT keys: {list(SAMPLE_DICT.keys())}")
 
-print(dictionary)
+# Get all values in dictionary.
+# Time complexity or BIG(O) - O(1)
+# list() function changes the time complexity from O(1) to O(n).
+print(f"SAMPLE_DICT values: {list(SAMPLE_DICT.values())}")
+
+# INSERT OPERATION
+print("\nINSERT OPERATION")
+
+# Insert entry into a dictionary.
+# Time complexity or BIG(O) - O(1)
+SAMPLE_DICT['lname'] = 'Kushwaha'
+print(f"SAMPLE_DICT after inserting ('lname', 'Kushwaha'): {SAMPLE_DICT}")
+
+# DELETE OPERATION
+print("\nDELETE OPERATION")
+
+# Delete entry from a dictionary.
+# Time complexity or BIG(O) - O(1)
+del SAMPLE_DICT['lname']
+print(f"SAMPLE_DICT after deleting ('lname', 'Kushwaha'): {SAMPLE_DICT}")
+
+# Clear dictionary.
+# Time complexity or BIG(O) - O(1)
+SAMPLE_DICT.clear()
+print(f"SAMPLE_DICT after clearing: {SAMPLE_DICT}")
