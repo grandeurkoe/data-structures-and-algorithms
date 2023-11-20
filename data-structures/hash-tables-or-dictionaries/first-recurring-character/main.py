@@ -1,34 +1,39 @@
-def first_recurring_character_nested(sample_array):
-    """Finds the first recurring character based on the sample provided using nested loops."""
-    does_exist = False
-    first_recurring = sample[0]
+SAMPLE = [2, 9, 0, 1, 5, 3, 6, 2]
+
+print(f"SAMPLE: {SAMPLE}")
+
+
+def first_recurring_character_using_nested_loops(sample):
+    """Get first recurring character using nested loops. Return first recurring character"""
+    recurring_char = None
     recurring_distance = len(sample) - 1
-    for sample_index in range(len(sample)):
-        for check_index in range(sample_index + 1, len(sample)):
-            if sample[sample_index] == sample[check_index] and recurring_distance > check_index - sample_index:
-                recurring_distance = check_index - sample_index
-                first_recurring = sample[sample_index]
-                does_exist = True
-    if recurring_distance == len(sample) - 1:
-        if does_exist:
-            print(f"First recurring character (nested): {first_recurring}")
+    while True:
+        for sample_index in range(len(sample)):
+            for check_index in range(sample_index + 1, len(sample)):
+                if sample[sample_index] == sample[check_index]:
+                    if (check_index - sample_index) < recurring_distance:
+                        recurring_distance = check_index - sample_index
+                        recurring_char = sample[sample_index]
+        if recurring_distance == len(sample) - 1:
+            if sample[0] == sample[-1]:
+                return sample[0]
+            else:
+                return None
+        elif recurring_distance < len(sample) - 1:
+            return recurring_char
+
+
+def first_recurring_character_using_hash(sample):
+    """Get first recurring character using hash. Return first recurring character."""
+    recurring_hash = {}
+    for char in sample:
+        if char in recurring_hash:
+            return char
         else:
-            print("No recurring characters.")
-    else:
-        print(f"First recurring character (nested): {first_recurring}")
+            recurring_hash[char] = True
 
 
-def first_recurring_character_hash(sample_array):
-    """Finds the first recurring character based on the sample provided using hash tables."""
-    sample_hash = {}
-    for character_index in range(len(sample)):
-        if sample[character_index] not in sample_hash.keys():
-            sample_hash[sample[character_index]] = sample[character_index]
-        else:
-            print(f"First recurring character (hash): {sample_hash[sample[character_index]]}")
-            return True
-
-
-sample = [2, 5, 5, 1, 3, 1, 2, 4]
-first_recurring_character_nested(sample)
-first_recurring_character_hash(sample)
+recurring_char_nested = first_recurring_character_using_nested_loops(SAMPLE)
+recurring_char_hash = first_recurring_character_using_hash(SAMPLE)
+print(f"First recurring character using nested loops: {recurring_char_nested}")
+print(f"First recurring character using hash: {recurring_char_hash}")
