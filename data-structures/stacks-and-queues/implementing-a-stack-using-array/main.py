@@ -1,42 +1,48 @@
-class Node:
-    def __init__(self, value):
-        """Creates an empty node."""
-        self.value = value
-        self.next = None
-
-
 class Stack:
     def __init__(self):
-        """Creates an empty stack."""
-        self.array = []
+        self.data = []
 
-    def peek(self):
-        """Prints the top node in the stack."""
-        if len(self.array) == 0:
-            print([])
+    def display(self):
+        """Display stack."""
+        if len(self.data) == 0:
+            print("\nNo data elements available in the Stack.")
         else:
-            print(self.array[-1])
+            print("\nStack:")
+            print(f"{self.data[-1]} <- Stack Top")
+            for index in range(len(self.data) - 2, -1, -1):
+                print(f"{self.data[index]}")
 
+    # PUSH OPERATION
+    # Time complexity or BIG(O) - O(1)
     def push(self, value):
-        """Adds a node to the top of the stack."""
-        self.array.append(value)
+        """Add data element to the top of the stack."""
+        self.data.append(value)
+        print(f"Push '{value}'.")
 
+    # POP OPERATION
+    # Time complexity or BIG(O) - O(1)
     def pop(self):
-        """Removes a node from the top of the stack."""
-        self.array.pop()
+        """Remove data element from the top of the stack"""
+        if len(self.data) == 0:
+            print("No data elements available in the Stack.")
+        else:
+            element_to_delete = self.data[-1]
+            self.data.pop()
+            print(f"Pop '{element_to_delete}'.")
 
-    def print(self):
-        """Prints the stack as an array."""
-        print(self.array)
+    # PEEK OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def peek(self):
+        """Get data element at the top of the Stack."""
+        if len(self.data) == 0:
+            print("No data elements available in the Stack.")
+        else:
+            print(f"Value({self.data[-1]}) is at the top of the stack.")
 
 
-my_stack = Stack()
-my_stack.peek()
-my_stack.push('Google')
-my_stack.push('Udemy')
-my_stack.push('Discord')
-my_stack.pop()
-# my_stack.pop()
-# my_stack.pop()
-my_stack.peek()
-my_stack.print()
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.pop()
+stack.peek()
+stack.display()
