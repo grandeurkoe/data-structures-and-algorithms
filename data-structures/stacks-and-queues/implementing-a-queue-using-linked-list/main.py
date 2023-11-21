@@ -1,76 +1,76 @@
 class Node:
     def __init__(self, value):
-        """Creates an empty node."""
         self.value = value
         self.next = None
 
 
 class Queue:
     def __init__(self):
-        """Creates an empty queue."""
         self.first = None
         self.last = None
         self.length = 0
 
-    def peek(self):
-        """Prints the first node in the queue."""
+    def display(self):
+        """Display queue."""
         if self.length == 0:
-            print(None)
+            print("\nNo data elements available in the Stack.")
         else:
-            print(self.first.value)
+            queue_disp = []
+            current_node = self.first
+            print("\nQueue:")
+            while current_node:
+                queue_disp.append(str(current_node.value))
+                current_node = current_node.next
+            print("-" * (self.length * 3))
+            print(f'{"  ".join(queue_disp)}')
+            print("-" * (self.length * 3))
 
+    # ENQUEUE OPERATION
+    # Time complexity or BIG(O) - O(1)
     def enqueue(self, value):
-        """Adds a node at the end of the queue."""
+        """Add data element to the end of the queue."""
         new_node = Node(value)
         if self.length == 0:
             self.first = new_node
-            self.last = new_node
+            self.last = self.first
         else:
-            current_node = self.first
-            while current_node.next is not None:
-                current_node = current_node.next
-            current_node.next = new_node
+            self.last.next = new_node
             self.last = new_node
         self.length += 1
+        print(f"Push '{value}'.")
 
+    # DEQUEUE OPERATION
+    # Time complexity or BIG(O) - O(1)
     def dequeue(self):
-        """Removes the front node from the queue."""
+        """Remove data element from the beginning of the queue."""
         if self.length == 0:
-            print("No data available in the Queue.")
-        elif self.first == self.last:
-            self.first = None
-            self.last = None
-            self.length -= 1
+            print("No data elements available in the Stack.")
         else:
-            current_node = self.first
-            self.first = current_node.next
-            self.length -= 1
+            element_to_delete = self.first.value
+            if self.length == 1:
+                self.first = None
+                self.last = None
+                self.length -= 1
+            else:
+                next_node = self.first.next
+                self.first = next_node
+                self.length -= 1
+            print(f"Pop '{element_to_delete}'.")
 
-    def print(self):
-        """Prints the queue as an array."""
-        queue_array = []
+    # PEEK OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def peek(self):
+        """Get data element from the beginning of the queue."""
         if self.length == 0:
-            pass
+            print("No data elements available in the Stack.")
         else:
-            current_node = self.first
-            while current_node.next is not None:
-                queue_array.append(current_node.value)
-                current_node = current_node.next
-            queue_array.append(current_node.value)
-        print(queue_array)
+            print(f"Value({self.first.value}) is at the beginning of the queue.")
 
 
-my_queue = Queue()
-my_queue.peek()
-my_queue.enqueue('Joy')
-my_queue.enqueue('Matt')
-my_queue.enqueue('Pavel')
-my_queue.enqueue('Samir')
-my_queue.dequeue()
-# my_queue.dequeue()
-# my_queue.dequeue()
-# my_queue.dequeue()
-my_queue.print()
-print(my_queue.first.value)
-print(my_queue.last.value)
-print(my_queue.length)
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.dequeue()
+queue.peek()
+queue.display()
