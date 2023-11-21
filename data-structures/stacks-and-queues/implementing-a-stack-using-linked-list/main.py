@@ -1,71 +1,79 @@
 class Node:
     def __init__(self, value):
-        """Creates an empty node."""
         self.value = value
         self.next = None
 
 
 class Stack:
     def __init__(self):
-        """Creates an empty stack."""
         self.top = None
         self.bottom = None
         self.length = 0
 
-    def peek(self):
-        """Prints the top node in the stack."""
-        if self.length == 0:
-            print(None)
+    def display(self):
+        """Display stack."""
+        if self.bottom is None:
+            print("\nNo data elements available in the Stack.")
         else:
-            print(self.top.value)
+            stack_disp = []
+            current_node = self.bottom
+            while current_node:
+                stack_disp.append(current_node.value)
+                current_node = current_node.next
+            print("\nStack:")
+            print(f"{stack_disp[-1]} <- Stack Top")
+            for index in range(len(stack_disp) - 2, -1, -1):
+                print(f"{stack_disp[index]}")
 
+    # PUSH OPERATION
+    # Time complexity or BIG(O) - O(1)
     def push(self, value):
-        """Adds a node to the top of the stack."""
+        """Add data element to the top of the stack."""
         new_node = Node(value)
-        if self.length == 0:
-            self.top = new_node
+        if self.bottom is None:
             self.bottom = new_node
+            self.top = self.bottom
         else:
-            current_node = self.bottom
-            for _ in range(self.length - 1):
-                current_node = current_node.next
+            self.top.next = new_node
             self.top = new_node
-            current_node.next = new_node
         self.length += 1
+        print(f"Push '{value}'.")
 
+    # POP OPERATION
+    # Time complexity or BIG(O) - O(1)
     def pop(self):
-        """Removes a node from the top of the stack."""
-        if self.length == 0:
-            print("Stack is Empty! No element deleted.")
-        elif self.top == self.bottom:
-            self.bottom = None
-            self.top = None
-            self.length = 0
+        """Remove data element from the top of the stack"""
+        if self.bottom is None:
+            print("No data elements available in the Stack.")
         else:
-            current_node = self.bottom
-            for _ in range(self.length - 2):
-                current_node = current_node.next
-            current_node.next = None
-            self.top = current_node
+            element_to_delete = self.top.value
+            if self.length == 1:
+                self.top = None
+                self.bottom = None
+            else:
+                current_node = self.bottom
+                for _ in range(self.length - 2):
+                    current_node = current_node.next
+                current_node.next = None
+                self.top = current_node
+            print(f"Pop '{element_to_delete}'.")
             self.length -= 1
 
-    def print(self):
-        """Prints the stack as an array."""
-        stack_array = []
-        current_node = self.bottom
-        traverse_var = 0
-        while traverse_var != self.length:
-            stack_array.append(current_node.value)
-            current_node = current_node.next
-            traverse_var += 1
-        print(stack_array)
+    # PEEK OPERATION
+    # Time complexity or BIG(O) - O(1)
+    def peek(self):
+        """Get data element at the top of the Stack."""
+        if self.bottom is None:
+            print("No data elements available in the Stack.")
+        else:
+            print(f"Value({self.top.value}) is at the top of the stack.")
 
 
-my_stack = Stack()
-my_stack.peek()
-my_stack.push('Google')
-my_stack.push('Udemy')
-my_stack.push('Discord')
-my_stack.pop()
-my_stack.pop()
-my_stack.print()
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.pop()
+stack.pop()
+stack.peek()
+stack.display()
