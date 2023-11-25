@@ -7,73 +7,91 @@ class Node:
 class Stack:
     def __init__(self):
         self.top = None
-        self.bottom = None
+        self.bottom = self.top
         self.length = 0
 
     def display(self):
         """Display stack."""
-        if self.bottom is None:
-            print("\nNo data elements available in the Stack.")
+        if self.length == 0:
+            print("\nStack:\nEmpty")
         else:
-            stack_disp = []
+            disp_stack = []
             current_node = self.bottom
             while current_node:
-                stack_disp.append(current_node.value)
+                disp_stack.append(current_node.value)
                 current_node = current_node.next
             print("\nStack:")
-            print(f"{stack_disp[-1]} <- Stack Top")
-            for index in range(len(stack_disp) - 2, -1, -1):
-                print(f"{stack_disp[index]}")
+            print(f"{disp_stack[-1]} <- Top")
+            for idx in range(len(disp_stack) - 2, -1, -1):
+                print(disp_stack[idx])
 
-    # PUSH OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # PUSH OPERATION -> Big O - O(1).
     def push(self, value):
         """Add data element to the top of the stack."""
         new_node = Node(value)
-        if self.bottom is None:
+        if self.length == 0:
             self.bottom = new_node
             self.top = self.bottom
         else:
             self.top.next = new_node
             self.top = new_node
         self.length += 1
-        print(f"Push '{value}'.")
+        print(f"Push Node({value}).")
 
-    # POP OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # POP OPERATION -> Big O - O(n).
     def pop(self):
         """Remove data element from the top of the stack"""
-        if self.bottom is None:
-            print("No data elements available in the Stack.")
+        if self.length == 0:
+            print("No nodes available in Stack.")
+        elif self.length == 1:
+            print(f"Pop Node({self.top.value}).")
+            self.top = None
+            self.bottom = None
+            self.length -= 1
         else:
-            element_to_delete = self.top.value
-            if self.length == 1:
-                self.top = None
-                self.bottom = None
-            else:
-                current_node = self.bottom
-                for _ in range(self.length - 2):
-                    current_node = current_node.next
-                current_node.next = None
-                self.top = current_node
-            print(f"Pop '{element_to_delete}'.")
+            print(f"Pop Node({self.top.value}).")
+            current_node = self.bottom
+            for _ in range(self.length - 2):
+                current_node = current_node.next
+            current_node.next = None
+            self.top = current_node
             self.length -= 1
 
-    # PEEK OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # PEEK OPERATION -> Big O - O(1).
     def peek(self):
         """Get data element at the top of the Stack."""
-        if self.bottom is None:
-            print("No data elements available in the Stack.")
+        if self.length == 0:
+            print("No nodes available in Stack.")
         else:
-            print(f"Value({self.top.value}) is at the top of the stack.")
+            print(f"Node({self.top.value}) at the top of the Stack.")
+
+    # LOOKUP OPERATION -> Big O - O(n).
+    def lookup(self, value):
+        """Check if data element exists."""
+        if self.length == 0:
+            print("No nodes available in Stack.")
+        else:
+            current_node = self.bottom
+            while current_node:
+                if current_node.value == value:
+                    print(f"Node({value}) exists.")
+                    return None
+                current_node = current_node.next
+            print(f"Node({value}) doesn't exist.")
 
 
 stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.pop()
+print("\nOPERATION LOG")
+stack.push(5)
+stack.push(6)
+stack.push(7)
+stack.push(8)
+stack.push(9)
 stack.pop()
 stack.peek()
+stack.lookup(10)
+stack.pop()
+stack.pop()
+stack.pop()
+stack.pop()
 stack.display()
