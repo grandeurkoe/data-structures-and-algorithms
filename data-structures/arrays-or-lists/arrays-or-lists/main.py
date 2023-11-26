@@ -1,62 +1,47 @@
-SAMPLE_ARRAY = ['a', 'b', 'c', 'z', 'y']
-
-print(f"SAMPLE_ARRAY: {SAMPLE_ARRAY}")
+SAMPLE = [1, 2, 4]
 
 # LOOKUP OPERATION
 print("\nLOOKUP OPERATION")
 
 # For example, if I want to get the data element at a certain index.
-# Time complexity or BIG(O) - O(1)
-print(f"Element at SAMPLE_ARRAY[0]: {SAMPLE_ARRAY[0]}")
+print(f"By Index, SAMPLE[0]: {SAMPLE[0]}")  # -> Big O - O(1)
 
 # If I wish to obtain the index of a specific element in the list.
-# Time complexity or BIG(O) - O(n)
-print(f"Index of 'y' in SAMPLE_ARRAY: {SAMPLE_ARRAY.index('y')}")
+print(f"By Value, SAMPLE.index(1): {SAMPLE.index(1)}")  # -> Big O - O(n)
 
 # PUSH OPERATION
 print("\nPUSH OPERATION")
 
 # If I want to append data element at the end of the list.
-# Time complexity or BIG(O) - O(1)
-SAMPLE_ARRAY.append('w')
-print(f"SAMPLE_ARRAY after pushing 'w': {SAMPLE_ARRAY}")
+SAMPLE.append(3)  # -> Big O - O(1)
+print(f"Append Value(3).")
 
 # INSERT OPERATION
-print("\nINSERT OPERATION")
+print(f"\nINSERT OPERATION")
 
 # If I want to insert data element at a given index.
-# Time complexity or BIG(O) - O(n)
-# Using the insert() function.
-SAMPLE_ARRAY.insert(3, 'd')
-print(f"SAMPLE_ARRAY after inserting element at index [2]: {SAMPLE_ARRAY}")
-
+SAMPLE.insert(0, 0)  # -> Big O - O(n)
+print(f"Insert Value({SAMPLE[0]}) at Index[0].")
 
 # POP OPERATION
-print("\nPOP OPERATION")
+print(f"\nPOP OPERATION")
 
 # If I want to pop data element from the end of the list.
-# Time complexity or BIG(O) - O(1)
-SAMPLE_ARRAY.pop()
-print(f"SAMPLE_ARRAY after popping 'w': {SAMPLE_ARRAY}")
+print(f"Pop Value({SAMPLE[-1]}).")
+SAMPLE.pop()  # -> Big O - O(1)
 
 # DELETE OPERATION
-print("\nDELETE OPERATION")
+print(f"\nDELETE OPERATION")
 
 # If I want to delete data element at a given index.
-# Time complexity or BIG(O) - O(n)
-# Using the pop() function.
-print("Delete data element using pop() function.")
-SAMPLE_ARRAY.pop(2)
-print(f"SAMPLE_ARRAY after removing element at index [2]: {SAMPLE_ARRAY}")
-
-# Using the del keyword.
-print("\nDelete data element using 'del' keyword")
-del SAMPLE_ARRAY[2]
-print(f"SAMPLE_ARRAY after removing element at index [2]: {SAMPLE_ARRAY}")
+print(f"Delete Value(1) at Index[{SAMPLE[1]}] using pop() function.")
+SAMPLE.pop(1)  # -> Big O - O(n)
 
 # If I want to delete data element by value.
-# Time complexity or BIG(O) - O(n)
-# Using the remove() function.
-print("\nDelete data element using remove() function")
-SAMPLE_ARRAY.remove('y')
-print(f"SAMPLE_ARRAY after removing element with value 'y': {SAMPLE_ARRAY}")
+print(f"Delete Value(2) using remove() function.")
+SAMPLE.remove(2)  # -> Big O - O(n)
+
+print(f"Delete at Index[1] using del keyword.")
+del SAMPLE[1]  # -> Big O - O(n)
+
+print(f"\nSAMPLE = {SAMPLE}")
