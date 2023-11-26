@@ -5,44 +5,56 @@ class Stack:
     def display(self):
         """Display stack."""
         if len(self.data) == 0:
-            print("\nNo data elements available in the Stack.")
+            print("\nStack:\nEmpty")
         else:
             print("\nStack:")
-            print(f"{self.data[-1]} <- Stack Top")
-            for index in range(len(self.data) - 2, -1, -1):
-                print(f"{self.data[index]}")
+            print(f"{self.data[-1]} <- Top")
+            for idx in range(len(self.data) - 2, -1, -1):
+                print(self.data[idx])
 
-    # PUSH OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # PUSH OPERATION -> Big O - O(1).
     def push(self, value):
         """Add data element to the top of the stack."""
         self.data.append(value)
-        print(f"Push '{value}'.")
+        print(f"Push Value({value}).")
 
-    # POP OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # POP OPERATION -> Big O - O(1).
     def pop(self):
         """Remove data element from the top of the stack"""
         if len(self.data) == 0:
-            print("No data elements available in the Stack.")
+            print("No elements available in Stack.")
         else:
-            element_to_delete = self.data[-1]
+            print(f"Pop Value({self.data[-1]}).")
             self.data.pop()
-            print(f"Pop '{element_to_delete}'.")
 
-    # PEEK OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # PEEK OPERATION -> Big O - O(1).
     def peek(self):
         """Get data element at the top of the Stack."""
         if len(self.data) == 0:
-            print("No data elements available in the Stack.")
+            print("No elements available in Stack.")
         else:
-            print(f"Value({self.data[-1]}) is at the top of the stack.")
+            print(f"Value({self.data[-1]}) is at the top of the Stack.")
+
+    # LOOKUP OPERATION -> Big O - O(n).
+    def lookup(self, value):
+        """Check if data element exists."""
+        if len(self.data) == 0:
+            print("No elements available in Stack.")
+        else:
+            if value in self.data:
+                print(f"Value({value}) at Index[{self.data.index(value)}].")
+            else:
+                print(f"Value({value}) doesn't exist.")
 
 
 stack = Stack()
-stack.push(1)
-stack.push(2)
+print("\nOPERATION LOG")
+stack.push(5)
+stack.push(6)
+stack.push(7)
 stack.pop()
 stack.peek()
+stack.lookup(5)
+stack.pop()
+stack.pop()
 stack.display()
