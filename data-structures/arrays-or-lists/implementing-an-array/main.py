@@ -5,99 +5,106 @@ class Array:
 
     def display(self):
         """Display list."""
-        print(f"\nList: {list(self.data.values())}\n")
-
-    # LOOKUP OPERATION
-    # Time complexity or BIG(O) - O(n)
-    def get_index(self, value):
-        """Gets the index of a given data element. Returns the index."""
-        if value in self.data.values():
-            for index in range(self.length):
-                if self.data[index] == value:
-                    print(f"Value('{value}') at Index[{index}].")
-                    return index
+        if self.length == 0:
+            print("\nArray: []")
         else:
-            print(f"Value('{value}') doesn't exist.")
+            print(f"\nArray: {list(self.data.values())}")
 
-    # Time complexity or BIG(O) - O(1)
-    def get_value_by_index(self, index):
-        """Get the data element at a given index."""
-        if index < self.length:
-            print(f"Value('{self.data[index]}') at Index[{index}].")
-        else:
-            print(f"Index('{index}') doesn't exist.")
-
-    # PUSH OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # PUSH OPERATION  # -> Big O - O(1)
     def push(self, value):
         """Append data element at the end of the list."""
         self.data[self.length] = value
         self.length += 1
-        print(f"Push '{value}'.")
+        print(f"Append Value({value}).")
 
-    # POP OPERATION
-    # Time complexity or BIG(O) - O(1)
+    # INSERT OPERATION  # -> Big O - O(n)
+    def insert(self, index, value):
+        """Insert data element at a given index."""
+        if index < 0:
+            print(f"Index[{index}] out of range[0, {self.length}).")
+        elif 0 <= index <= self.length - 1:
+            for copy_idx in range(self.length, index, -1):
+                self.data[copy_idx] = self.data[copy_idx - 1]
+            self.data[index] = value
+            self.length += 1
+            print(f"Insert Value({value}) at Index[{index}].")
+        elif index >= self.length:
+            self.push(value)
+
+    # POP OPERATION  # -> Big O - O(1)
     def pop(self):
         """Pop data element from the end of the list."""
         if self.length == 0:
-            print(f"No data elements available in the list.")
+            print("No element available in Array.")
         else:
             element_to_delete = self.data[self.length - 1]
             del self.data[self.length - 1]
             self.length -= 1
-            print(f"Pop '{element_to_delete}'.")
+            print(f"Pop Value({element_to_delete}).")
 
-    # INSERT OPERATION
-    # Time complexity or BIG(O) - O(n)
-    def insert(self, index, value):
-        """Insert data element at a given index."""
-        if index >= self.length:
-            self.push(value)
-        else:
-            if index in self.data:
-                for key in range(self.length, index, -1):
-                    self.data[key] = self.data[key - 1]
-                self.data[index] = value
-        self.length += 1
-        print(f"Insert '{value}' at Index[{index}].")
-
-    # DELETE OPERATION
-    # Time complexity or BIG(O) - O(n)
-    def remove_by_index(self, index):
-        """Remove data element at a given index."""
-        if index == self.length - 1:
-            self.pop()
-        elif 0 <= index < self.length - 1:
-            for key in range(index, self.length - 1):
-                self.data[key] = self.data[key + 1]
-            del self.data[self.length - 1]
-            self.length -= 1
-            print(f"Delete element at Index[{index}].")
-        else:
-            print(f"No element at Index[{index}].")
-
-    def remove_by_value(self, value):
+    # DELETE OPERATION -> Big O - O(n)
+    def remove(self, value):
         """Remove data element by value."""
         if self.length == 0:
-            print(f"No data elements available in the list.")
+            print("No element available in Array.")
+        else:
+            if value == self.data[self.length - 1]:
+                self.pop()
+            elif value in self.data.values():
+                element_del_idx = 0
+                for idx in range(self.length):
+                    if value == self.data[idx]:
+                        element_del_idx = idx
+                        break
+                for del_idx in range(element_del_idx, self.length - 1):
+                    self.data[del_idx] = self.data[del_idx + 1]
+                del self.data[self.length - 1]
+                self.length -= 1
+                print(f"Delete Value({value}).")
+            else:
+                print(f"Value({value}) not available in Array.")
+
+    # LOOKUP OPERATION
+    # BY VALUE -> Big O - O(n)
+    def get_index(self, value):
+        """Gets the index of a given data element."""
+        if self.length == 0:
+            print("No element available in Array.")
         else:
             if value in self.data.values():
-                element_idx = self.get_index(value)
-                self.remove_by_index(element_idx)
+                value_idx = 0
+                for idx in range(self.length):
+                    if value == self.data[idx]:
+                        value_idx = idx
+                        break
+                print(f"Value({value}) at Index[{value_idx}].")
             else:
-                print(f"Value('{value}') doesn't exist.")
+                print(f"Value({value}) not available in Array.")
+
+    # BY INDEX -> Big O - O(1)
+    def get_value(self, index):
+        """Get the data element at a given index."""
+        if self.length == 0:
+            print("No element available in Array.")
+        else:
+            if index in self.data.keys():
+                print(f"Value({self.data[index]}) at Index[{index}].")
+            else:
+                print(f"Index[{index}] not available in Array.")
 
 
 arr = Array()
-arr.push('a')
-arr.push('b')
-arr.push('c')
-arr.push('d')
+print("\nOPERATION LOG")
+arr.push(0)
+arr.push(2)
+arr.insert(1, 1)
+arr.push(3)
+arr.push(4)
+arr.get_value(2)
 arr.pop()
-arr.insert(0, 'a')
-arr.remove_by_index(0)
-arr.remove_by_value('a')
-arr.get_index('c')
-arr.get_value_by_index(0)
+arr.remove(1)
+arr.remove(2)
+arr.get_index(3)
+arr.pop()
+arr.pop()
 arr.display()
-print(arr.data)
