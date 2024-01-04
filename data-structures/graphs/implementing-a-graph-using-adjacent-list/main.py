@@ -1,22 +1,42 @@
 class Graph:
-    def __init__(self):
+    def __init__(self) -> None:
+        self.adjacency_list = {}
         self.number_of_nodes = 0
-        self.adjacent_list = {}
 
-    def add_vertex(self, node):
-        self.adjacent_list[node] = []
-        self.number_of_nodes += 1
+    
+    def add_vertex(self, value):
+        """Add Node or Vertex."""
+        if value not in self.adjacency_list:
+            self.adjacency_list[value] = []
+            self.number_of_nodes += 1
+            print(f"Add Vertex({value}).")
+        else:
+            print(f"Vertex({value}) already exists.")
 
-    def add_edge(self, node_1, node_2):
-        self.adjacent_list[node_1].append(node_2)
-        self.adjacent_list[node_2].append(node_1)
+    def add_edge(self, first_vertex, second_vertex):
+        """Add Edge."""
+        if first_vertex not in self.adjacency_list and second_vertex not in self.adjacency_list:
+            self.add_vertex(first_vertex)
+            self.add_vertex(second_vertex)
+        if first_vertex in self.adjacency_list and second_vertex not in self.adjacency_list:
+            self.add_vertex(second_vertex)
+        elif first_vertex not in self.adjacency_list and second_vertex in self.adjacency_list:
+            self.add_vertex(first_vertex)
+        self.adjacency_list[first_vertex].append(second_vertex)
+        self.adjacency_list[second_vertex].append(first_vertex)
+        print(f"Add Edge between Vertex({first_vertex}) and Vertex({second_vertex}).")
 
+
+    
     def show_connection(self):
-        for each_index in self.adjacent_list:
-            print(f"{each_index} --> {self.adjacent_list[each_index]}")
-
+        """Show Adjacency List."""
+        print("\nGRAPH META DATA")
+        print(f"Number of Nodes in Graph = {self.number_of_nodes}")
+        for node in self.adjacency_list:
+            print(f"Node({node}) ---> {self.adjacency_list[node]}")
 
 my_graph = Graph()
+print("OPERATION LOG")
 my_graph.add_vertex('0')
 my_graph.add_vertex('1')
 my_graph.add_vertex('2')
